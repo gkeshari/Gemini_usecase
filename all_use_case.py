@@ -9,14 +9,12 @@ import tempfile
 from dotenv import load_dotenv
 
 load_dotenv()
+os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+
+
 # model = genai.GenerativeModel("gemini-1.5-flash")
 
-
-# genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
-
-# Initialize Gemini API (you'll need to set up your API key)
-# genai.configure(api_key="GOOGLE_API_KEY")
 
 def main():
     st.title("Gemini API Demo")

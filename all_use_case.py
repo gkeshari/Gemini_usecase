@@ -6,6 +6,7 @@ from pathlib import Path
 # from IPython.display import Markdown
 import os
 import tempfile
+from dotenv import load_dotenv
 
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))

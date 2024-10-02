@@ -3,7 +3,7 @@ import google.generativeai as genai
 from PIL import Image
 import io
 from pathlib import Path
-from IPython.display import Markdown
+# from IPython.display import Markdown
 import os
 import tempfile
 genai.configure(api_key=os.environ["GOOGLE_API_KEY"])

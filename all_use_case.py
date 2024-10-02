@@ -6,7 +6,13 @@ from pathlib import Path
 # from IPython.display import Markdown
 import os
 import tempfile
-genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
+
+load_dotenv()
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+# model = genai.GenerativeModel("gemini-1.5-flash")
+
+
+# genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 
 # Initialize Gemini API (you'll need to set up your API key)
 # genai.configure(api_key="GOOGLE_API_KEY")
@@ -59,26 +65,6 @@ def image_analysis():
             result = model.generate_content([user_input,sample_file])
             st.write("Analysis:", result.text)
 
-# def audio_analysis():
-#     st.header("Audio Analysis")
-    
-#     uploaded_file = st.file_uploader("Choose an audio file", type=["mp3", "wav"])
-#     if uploaded_file is not None:
-#         st.audio(uploaded_file, format="audio/mp3")
-#         user_input = st.text_input("Enter your prompt")
-#         if st.button("Analyze Audio"):
-#             # myfile = genai.upload_file(uploaded_file)
-#             model = genai.GenerativeModel("gemini-1.5-flash")
-#             # result = model.generate_content([user_input,myfile])
-#             result = model.generate_content([
-#                                                 user_input,
-#                                                 {
-#                                                     "mime_type": "audio/mp3",
-#                                                     "data": Path(uploaded_file).read_bytes()
-#                                                 }
-#                                             ])
-#             st.write("Analysis:", result.text)
-
 def audio_analysis():
     st.header("Audio Analysis")
     
@@ -103,56 +89,6 @@ def audio_analysis():
             ])
             
             st.write("Analysis:", result.text)
-
-
-# def video_analysis():
-#     st.header("Video Analysis")
-    
-#     uploaded_file = st.file_uploader("Choose a video file", type=["mp4"])
-#     if uploaded_file is not None:
-#         st.video(uploaded_file)
-        
-#         prompt = st.text_input("Enter a prompt for video analysis:")
-#         if st.button("Analyze Video"):
-#             video_file = genai.upload_file(path=uploaded_file)
-
-#             model = genai.GenerativeModel("gemini-1.5-pro")
-            
-#             # Process the video file
-#             # video_file = genai.upload_file(uploaded_file)
-            
-#             # Make the LLM request
-#             response = model.generate_content([prompt, video_file], request_options={"timeout": 600})
-#             st.write("Analysis:", response.text)
-
-
-# def video_analysis():
-#   st.header("Video Analysis")
-
-#   uploaded_file = st.file_uploader("Choose a video file", type=["mp4"])
-#   if uploaded_file is not None:
-#     # Save the uploaded file to a temporary location
-#     with tempfile.NamedTemporaryFile(delete=False) as temp_file:
-#       temp_file.write(uploaded_file.read())
-#       temp_file_path = temp_file.name  # Get the temporary file path
-
-#     st.video(uploaded_file)  # Display the uploaded video
-
-#     prompt = st.text_input("Enter a prompt for video analysis:")
-#     if st.button("Analyze Video"):
-#       # Use the temporary file path for upload
-#       video_file = genai.upload_file(path=temp_file_path)
-
-#       model = genai.GenerativeModel("gemini-1.5-pro")
-
-#       # Process the video file (specific processing depends on genai library)
-#       # ...
-
-#       # Make the LLM request
-#       response = model.generate_content([prompt, video_file], request_options={"timeout": 600})
-#       st.write("Analysis:", response.text)
-
-# InvalidArgument: 400 Unsupported MIME type: application/octet-stream
 
 def video_analysis():
     st.header("Video Analysis")

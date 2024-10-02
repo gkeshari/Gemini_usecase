@@ -1,5 +1,4 @@
 streamlit==1.33.0
-google-generativeai
+google-generativeai==0.7.2
 python-dotenv
-PyPDF2
-Pillow
+Pillow==10.3.0
